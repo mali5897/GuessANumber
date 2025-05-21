@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: limegreen;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1em;
+      border: 2px solid orange;
+      border-radius: 5px;
+      background-color: #333;
+      color: white;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background-color: orange;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #feedbackContainer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #feedbackImage {
+      max-width: 300px;
+      display: none;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Guess A Number!</h1>
+  <input type="text" id="guessInput" placeholder="Enter a number (1-10)" />
+  <br>
+  <button onclick="checkGuess()">Guess</button>
+  <button onclick="resetGame()">Reset</button>
+
+  <div id="feedbackContainer">
+    <img id="feedbackImage" src="" alt="Feedback Image">
+  </div>
+
+  <script>
+    let correctNumber = Math.floor(Math.random() * 10) + 1;
+
+    function checkGuess() {
+      const input = document.getElementById("guessInput").value.trim();
+      const feedbackImg = document.getElementById("feedbackImage");
+
+      // Check for whole number only
+      if (!/^\d+$/.test(input)) {
+        alert("Please enter whole numbers only.");
+        return;
+      }
+
+      const guess = parseInt(input);
+
+      if (guess < 1 || guess > 10) {
+        alert("Please enter a number between 1 and 10.");
+        return;
+      }
+
+      if (guess === correctNumber) {
+        feedbackImg.src = "You_win.png";
+        feedbackImg.style.display = "block";
+      } else {
+        feedbackImg.src = "Guess_again.png";
+        feedbackImg.style.display = "block";
+      }
+    }
+
+    function resetGame() {
+      correctNumber = Math.floor(Math.random() * 10) + 1;
+      document.getElementById("guessInput").value = "";
+      const feedbackImg = document.getElementById("feedbackImage");
+      feedbackImg.src = "";
+      feedbackImg.style.display = "none";
+    }
+  </script>
+</body>
+</html>
+
