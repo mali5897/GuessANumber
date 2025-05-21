@@ -54,7 +54,7 @@
 </head>
 <body>
   <h1>Guess A Number!</h1>
-  <input type="text" id="guessInput" placeholder="Enter a number (1-10)" />
+  <input type="text" id="guessInput" placeholder="Enter a number (1-15)" />
   <br>
   <button onclick="checkGuess()">Guess</button>
   <button onclick="resetGame()">Reset</button>
@@ -64,7 +64,7 @@
   </div>
 
   <script>
-    let correctNumber = Math.floor(Math.random() * 10) + 1;
+    let correctNumber = Math.floor(Math.random() * 15) + 1;
 
     function checkGuess() {
       const input = document.getElementById("guessInput").value.trim();
@@ -78,7 +78,7 @@
 
       const guess = parseInt(input);
 
-      if (guess < 1 || guess > 10) {
+      if (guess < 1 || guess > 15) {
         alert("Please enter a number between 1 and 10.");
         return;
       }
